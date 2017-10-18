@@ -1,0 +1,41 @@
+[user]
+	name = Martin Rancourt
+	email = vonziper@gmail.com
+[alias]
+	a = add
+	l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short -30 --reverse
+	lc = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --oneline master..
+	filelog = log -u
+	fl = log -u
+	dlc = diff --cached HEAD^
+	la = "!git config -l | grep alias | cut -c 7-"
+	cp = cherry-pick
+	s = status -sb
+	cl = clone
+	ci = commit
+	co = checkout
+	br = branch 
+	diff = diff --word-diff
+	r = reset
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+	rh = reset --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
+	st = stash
+	sth = stash
+	stp = stash pop
+	sthp = stash pop
+	stl = stash list
+	b = branch
+	unskrewme = !git reset * && git checkout . && git add * -f && git stash && git stash drop
+	pf = push -f
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	ca = commit --amend
+	cane = commit --amend --no-edit
+[push]
+	default = current
+[core]
+	excludesfile = /Users/mrancourt/.gitignore_global
