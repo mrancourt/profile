@@ -3,7 +3,7 @@ Simply run init.sh
 
 ### App config
 
-### iterm2
+### iTerm2
 
 Iterm 2 stores it's config under `~/Library/Preferences/com.googlecode.iterm2.pl‌​ist `
 
@@ -16,10 +16,13 @@ cp com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.pl‌
 
 ### Spectacle
 
-Spectacle stores it's config under `~/Library/Application Support/Spectacle/Shortcuts.json`
+Spectacle stores it's config under `~/Library/Application\ Support/Spectacle/Shortcuts.json`
 
 To restore configs, simply do the following
 
 ```bash
-Shortcuts.json ~/Library/Application Support/Spectacle/Shortcuts.json
+# make sure Spectacle folder exists
+mkdir -p ~/Library/Application\ Support/Spectacle
+# copy settings
+cp Shortcuts.json ~/Library/Application\ Support/Spectacle/Shortcuts.json
 ```
