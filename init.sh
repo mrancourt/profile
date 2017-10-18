@@ -3,6 +3,7 @@
 # TODO : make that generic
 cp .gitconfig ~/.gitconfig
 cp .gitignore_global ~/.gitignore_global
+# TODO : fix .zshrc export. looks like it might be overwriten by zsh install
 cp .zshrc ~/.zshrc
 
 # -- iTerm --
