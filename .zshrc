@@ -26,64 +26,36 @@ COMPLETION_WAITING_DOTS="false"
 plugins=(rails git ruby brew gem)
 
 source $ZSH/oh-my-zsh.sh
-
-### Aliases ### 
-alias zshconfig="subl ~/.zshrc"
-alias ohmyzsh="subl ~/.oh-my-zsh"
-
-alias h="cd $HOME"
-
-alias rc="subl $HOME/.zshrc"
-alias s="rails s"
-alias mys="mysql --auto-rehash -u root"
-
-# Show forwarded ports (by ssh)
-alias fwd="lsof -i -n -P | grep -e 'IPv4' | grep -E '^ssh' | grep -e '(LISTEN)'"
-
-# Dev
-alias g="git"
-alias gcm="git cehckout master"
-alias c=clear
-
-### Function ###
-mkdirc ()
-{
-    mkdir -p -- "$1" &&
-      cd -P -- "$1"
-}
-
-jumpbox() {
-	ssh -L $3:$2 $1 "while true; do sleep 5; printf '\r'; done"
-}
-
-port() {
-	lsof -i :$1
-}
-
-pxg() {
-	ps aux | grep $1
-}
-
-# git status watch
-sw() {
-	while :
-	do
-		echo -ne "\ec"
-		git status
-		sleep 1
-	done	
-}
+source $HOME/alias.zsh
+source $HOME/funcs.zsh
 
 export PATH=~/phantomjs-1.8.2-macosx/bin:$PATH
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-source /usr/local/bin/activate.sh
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-# added by travis gem
-[ -f /Users/mrancourt/.travis/travis.sh ] && source /Users/mrancourt/.travis/travis.sh
-
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+
+# Kube context 
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+export KUBE_PS1_SYMBOL_COLOR="grey"
+export KUBE_PS1_CTX_COLOR="grey"
+export KUBE_PS1_NS_COLOR="grey"
+#PS1='$(kube_ps1)'$PS1
+
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use
+  elif [[ $(nvm version) != $(nvm version default)  ]]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+# Docker
+# eval "$(docker-machine env default)"

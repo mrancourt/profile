@@ -42,3 +42,5 @@ Thumbs.db
 .idea
 
 .rubocop.yml
+.byebug_history
+db/test.sqlite3-journal

@@ -1,11 +1,12 @@
 [user]
 	name = Martin Rancourt
-	email = vonziper@gmail.com
+	email = <me@email.com> # Update accordingly to org
 [alias]
 	a = add
-	l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short -30 --reverse
+	l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short -10
 	lc = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --oneline master..
 	filelog = log -u
+	d = "!sh -c \"git diff HEAD~$1\""
 	fl = log -u
 	dlc = diff --cached HEAD^
 	la = "!git config -l | grep alias | cut -c 7-"
@@ -30,12 +31,18 @@
 	b = branch
 	unskrewme = !git reset * && git checkout . && git add * -f && git stash && git stash drop
 	pf = push -f
-	rb = rebase
+	rb = pull --rebase origin master
 	rba = rebase --abort
 	rbc = rebase --continue
 	ca = commit --amend
 	cane = commit --amend --no-edit
+	rbm = rebase master
+	com = checkout master
+	wip = !git add . && git commit -m 'wip'
+	ce = commit --allow-empty -m
 [push]
 	default = current
 [core]
 	excludesfile = /Users/mrancourt/.gitignore_global
+[help]
+	autocorrect = 1
